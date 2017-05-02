@@ -27,7 +27,7 @@ posts = Post.all
  #Create Question
  100.times do
     Question.create!(
-      title: posts.sample,
+      title: RandomData.random_sentence,
       body: RandomData.random_paragraph,
       resolved: false
     )
