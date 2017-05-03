@@ -23,8 +23,25 @@
       </div>
     </div>
     <% end %>
+
+    <h4>Sponsored</h4>
+    <% @topic.sponsored_posts.each do |s_post| %>
+    <div class="media">
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= link_to s_post.title, topic_sponsored_post_path(@topic, s_post) %>
+        </h4>
+        <small>
+          submitted
+          <%= time_ago_in_words(s_post.created_at) %>
+          ago
+        </small>
+      </div>
+    </div>
+    <% end %>
   </div>
   <div class="col-md-4">
     <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+    <%= link_to "New Sponsored Post", new_topic_sponsored_post_path(@topic), class: 'btn btn-warning' %>
   </div>
 </div>
