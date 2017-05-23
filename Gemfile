@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bcrypt'
 
+gem 'figaro', '1.0'
+
 group :production do
    gem 'pg'
    gem 'rails_12factor'
