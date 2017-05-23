@@ -1,0 +1,6 @@
+You are now following "<%= @post.title %>"
+ <%= "=" * (@post.title.length + 12) %>
+
+You will be notified of any new comments in your <%= link_to "post", topic_post_url(@post.topic, @post) %>
+
+ Visit online at: <%= link_to "post", topic_post_url(@post.topic, @post) %>
