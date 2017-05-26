@@ -107,4 +107,23 @@ RSpec.describe User, type: :model do
       expect(known_user.avatar_url(48)).to eq(expected_gravatar)
     end
   end
+
+  describe "#get_favorite_posts(user)" do
+    before do
+      topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+      @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      @secondPost = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+    end
+
+    it "returns `0` if the user has not favorited the post" do
+      expect(user.get_favorite_posts.count).to eq(0)
+    end
+
+    it "returns the correct amount of favorites" do
+      favorite = user.favorites.where(post: @post).create
+      favorite = user.favorites.where(post: @secondPost).create
+
+      expect(user.get_favorite_posts.count).to eq(2)
+    end
+  end
 end

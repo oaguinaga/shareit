@@ -1,0 +1,18 @@
+<div class="media">
+  <% favatar_url = post.user.avatar_url(64) %>
+  <% if favatar_url %>
+    <div class="media-left">
+      <%= image_tag favatar_url, class: 'media-object' %>
+    </div>
+  <% end %>
+
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to post.title, topic_post_path(post.topic, post) %>
+    </h4>
+    <small>
+      submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
+      <%= post.comments.count %> Comments |   <%= post.votes.count %> Votes
+    </small>
+  </div>
+</div>

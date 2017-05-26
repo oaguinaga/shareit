@@ -2,7 +2,6 @@
   <div class="col-md-8">
     <div class="media">
       <br />
-      
       <% avatar_url = @user.avatar_url(128) %>
       <% if avatar_url %>
       <div class="media-left">
@@ -17,11 +16,20 @@
         </small>
       </div>
     </div>
+    <h2>Posts</h2>
+    <%= are_there_post_for_user?(@user) %>
+
+
+    <h2>Comments</h2>
+    <%= render @user.comments %>
+
+  </div>
+  <div class="col-md-4">
+    <div class="media">
+      <h2>Favorited Posts</h2>
+      <% @user.get_favorite_posts.each do |post|%>
+        <%=render partial: 'posts/favorite_post', collection: post, as: :post%>
+      <% end %>
+    </div>
   </div>
 </div>
-
-<h2>Posts</h2>
-<%= render @user.posts %>
-
-<h2>Comments</h2>
-<%= render @user.comments %>
